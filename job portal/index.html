@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-briefcase"></i> Job Portal</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="joblisting.html"><i class="fas fa-list"></i> Job Listings</a></li>
+                    <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+                    <li><a href="skill-assessment.html"><i class="fas fa-tasks"></i> Skill Tests</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="resume-upload.html"><i class="fas fa-file-upload"></i> Resume Upload</a></li>
+                    <li class="notification-dropdown">
+                        <button class="notification-btn" onclick="toggleNotificationDropdown()">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-text">Notification</span>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="notification-dropdown-content" id="notificationDropdown">
+                            <div class="notification-header">
+                                <h3>Upcoming Jobs</h3>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>Software Engineer at Google</h4>
+                                        <p>Application Deadline: March 25, 2024</p>
+                                        <span class="notification-time">2 days left</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>Data Analyst at Facebook</h4>
+                                        <p>Application Deadline: March 28, 2024</p>
+                                        <span class="notification-time">5 days left</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>Product Manager at Amazon</h4>
+                                        <p>Application Deadline: March 30, 2024</p>
+                                        <span class="notification-time">7 days left</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-footer">
+                                <a href="joblisting.html" class="view-all">View All Jobs</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="profile-dropdown">
+                        <button class="profile-btn" onclick="toggleProfileDropdown()">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Anmol Pandey</span>
+                        </button>
+                        <div class="profile-dropdown-content" id="profileDropdown">
+                            <div class="profile-header">
+                                <div class="profile-avatar" onclick="triggerProfilePhotoUpload()">
+                                    <input type="file" id="profilePhotoInput" accept="image/*" style="display: none;" onchange="handleProfilePhotoUpload(event)">
+                                    <div class="avatar-container">
+                                        <img id="profilePhoto" src="images/default-avatar.png" alt="Profile Photo">
+                                        <div class="avatar-overlay">
+                                            <i class="fas fa-camera"></i>
+                                            <span>Change Photo</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile-info">
+                                    <h3>Anmol Pandey</h3>
+                                    <p>anmolpandey6790@gmail.com</p>
+                                    <span class="profile-status">Software Engineer</span>
+                                </div>
+                            </div>
+                            <div class="profile-menu">
+                                <a href="profile.html" class="profile-menu-item">
+                                    <i class="fas fa-user"></i>
+                                    <div class="menu-item-info">
+                                        <span>My Profile</span>
+                                        <small>View and edit your profile</small>
+                                    </div>
+                                </a>
+                                <a href="applications.html" class="profile-menu-item">
+                                    <i class="fas fa-briefcase"></i>
+                                    <div class="menu-item-info">
+                                        <span>My Applications</span>
+                                        <small>Track your job applications</small>
+                                    </div>
+                                </a>
+                                <a href="saved-jobs.html" class="profile-menu-item">
+                                    <i class="fas fa-bookmark"></i>
+                                    <div class="menu-item-info">
+                                        <span>Saved Jobs</span>
+                                        <small>View your saved jobs</small>
+                                    </div>
+                                </a>
+                                <a href="resume.html" class="profile-menu-item">
+                                    <i class="fas fa-file-alt"></i>
+                                    <div class="menu-item-info">
+                                        <span>My Resume</span>
+                                        <small>Update your resume</small>
+                                    </div>
+                                </a>
+                                <a href="settings.html" class="profile-menu-item">
+                                    <i class="fas fa-cog"></i>
+                                    <div class="menu-item-info">
+                                        <span>Settings</span>
+                                        <small>Manage your preferences</small>
+                                    </div>
+                                </a>
+                                <div class="profile-divider"></div>
+                                <a href="#" class="profile-menu-item" onclick="showHelpCenter()">
+                                    <i class="fas fa-question-circle"></i>
+                                    <div class="menu-item-info">
+                                        <span>Help Center</span>
+                                        <small>Get support</small>
+                                    </div>
+                                </a>
+                                <a href="#" class="profile-menu-item logout" onclick="logout()">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <div class="menu-item-info">
+                                        <span>Logout</span>
+                                        <small>Sign out of your account</small>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="language-selector">
+                        <button class="language-btn" onclick="toggleLanguageDropdown()">
+                            <i class="fas fa-globe"></i>
+                            <span id="currentLanguage">English</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="language-dropdown" id="languageDropdown">
+                            <div class="language-search">
+                                <input type="text" placeholder="Search language..." onkeyup="filterLanguages(this.value)">
+                            </div>
+                            <ul class="language-list">
+                                <li onclick="changeLanguage('English', 'en')">
+                                    <img src="https://flagcdn.com/w20/gb.png" alt="English">
+                                    <span>English</span>
+                                </li>
+                                <li onclick="changeLanguage('हिंदी', 'hi')">
+                                    <img src="https://flagcdn.com/w20/in.png" alt="Hindi">
+                                    <span>हिंदी</span>
+                                </li>
+                                <li onclick="changeLanguage('Español', 'es')">
+                                    <img src="https://flagcdn.com/w20/es.png" alt="Spanish">
+                                    <span>Español</span>
+                                </li>
+                                <li onclick="changeLanguage('Français', 'fr')">
+                                    <img src="https://flagcdn.com/w20/fr.png" alt="French">
+                                    <span>Français</span>
+                                </li>
+                                <li onclick="changeLanguage('Deutsch', 'de')">
+                                    <img src="https://flagcdn.com/w20/de.png" alt="German">
+                                    <span>Deutsch</span>
+                                </li>
+                                <li onclick="changeLanguage('日本語', 'ja')">
+                                    <img src="https://flagcdn.com/w20/jp.png" alt="Japanese">
+                                    <span>日本語</span>
+                                </li>
+                                <li onclick="changeLanguage('中文', 'zh')">
+                                    <img src="https://flagcdn.com/w20/cn.png" alt="Chinese">
+                                    <span>中文</span>
+                                </li>
+                                <li onclick="changeLanguage('العربية', 'ar')">
+                                    <img src="https://flagcdn.com/w20/sa.png" alt="Arabic">
+                                    <span>العربية</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h2>Find Your Dream Job Today!</h2>
+            <p>Explore thousands of job listings from top companies.</p>
+            <form class="search-form">
+                <input type="text" placeholder="Job Title or Keywords">
+                <input type="text" placeholder="Location">
+                <button type="submit">Search Jobs</button>
+            </form>
+        </section>
+
+        <section class="resume-upload-section">
+            <div class="upload-header" onclick="toggleUploadForm()">
+                <h2><i class="fas fa-file-upload"></i> Upload Your Resume</h2>
+                <p class="subtitle">Click to upload your resume</p>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            
+            <div class="upload-container" id="uploadForm">
+                <div class="upload-steps">
+                    <div class="step active">
+                        <i class="fas fa-user"></i>
+                        <span>Personal Info</span>
+                    </div>
+                    <div class="step">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Resume</span>
+                    </div>
+                    <div class="step">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Complete</span>
+                    </div>
+                </div>
+
+                <form class="resume-form">
+                    <div class="form-section">
+                        <h3><i class="fas fa-user-circle"></i> Personal Information</h3>
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Current Location</label>
+                            <input type="text" id="location" name="location" placeholder="City, State, Country" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn Profile</label>
+                            <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                        </div>
+                        <div class="form-group">
+                            <label for="portfolio">Portfolio Website</label>
+                            <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <div class="form-group">
+                            <label for="highest-degree">Highest Degree</label>
+                            <select id="highest-degree" name="highest-degree" required>
+                                <option value="">Select your highest degree</option>
+                                <option value="phd">Ph.D.</option>
+                                <option value="masters">Master's Degree</option>
+                                <option value="bachelors">Bachelor's Degree</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="highschool">High School</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="university">University/Institution</label>
+                            <input type="text" id="university" name="university" placeholder="Enter your university name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="field-of-study">Field of Study</label>
+                            <input type="text" id="field-of-study" name="field-of-study" placeholder="e.g., Computer Science" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="graduation-year">Graduation Year</label>
+                            <input type="number" id="graduation-year" name="graduation-year" min="1950" max="2030" placeholder="YYYY" required>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
+                        <div class="form-group">
+                            <label for="total-experience">Total Years of Experience</label>
+                            <select id="total-experience" name="total-experience" required>
+                                <option value="">Select experience</option>
+                                <option value="fresher">Fresher</option>
+                                <option value="1-2">1-2 years</option>
+                                <option value="3-5">3-5 years</option>
+                                <option value="5-10">5-10 years</option>
+                                <option value="10+">10+ years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="current-company">Current/Last Company</label>
+                            <input type="text" id="current-company" name="current-company" placeholder="Enter company name">
+                        </div>
+                        <div class="form-group">
+                            <label for="job-title">Current/Last Job Title</label>
+                            <input type="text" id="job-title" name="job-title" placeholder="e.g., Software Engineer">
+                        </div>
+                        <div class="form-group">
+                            <label for="notice-period">Notice Period</label>
+                            <select id="notice-period" name="notice-period">
+                                <option value="">Select notice period</option>
+                                <option value="immediate">Immediate Joiner</option>
+                                <option value="15-days">15 Days</option>
+                                <option value="30-days">30 Days</option>
+                                <option value="60-days">60 Days</option>
+                                <option value="90-days">90 Days</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-code"></i> Skills & Preferences</h3>
+                        <div class="form-group">
+                            <label for="primary-skills">Primary Skills</label>
+                            <input type="text" id="primary-skills" name="primary-skills" placeholder="e.g., JavaScript, Python, Java" required>
+                            <small>Separate multiple skills with commas</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="secondary-skills">Secondary Skills</label>
+                            <input type="text" id="secondary-skills" name="secondary-skills" placeholder="e.g., HTML, CSS, Git">
+                            <small>Separate multiple skills with commas</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="languages">Languages Known</label>
+                            <input type="text" id="languages" name="languages" placeholder="e.g., English, Hindi, Spanish">
+                            <small>Separate multiple languages with commas</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-type">Preferred Job Type</label>
+                            <select id="job-type" name="job-type" multiple>
+                                <option value="full-time">Full Time</option>
+                                <option value="part-time">Part Time</option>
+                                <option value="contract">Contract</option>
+                                <option value="freelance">Freelance</option>
+                                <option value="internship">Internship</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="expected-salary">Expected Annual Salary</label>
+                            <input type="text" id="expected-salary" name="expected-salary" placeholder="e.g., $50,000 - $70,000">
+                        </div>
+                        <div class="form-group">
+                            <label for="preferred-location">Preferred Work Location</label>
+                            <input type="text" id="preferred-location" name="preferred-location" placeholder="e.g., New York, Remote">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-file-alt"></i> Resume & Documents</h3>
+                        <div class="form-group">
+                            <label for="resume">Upload Resume</label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                                <div class="file-upload-message">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Drag & drop your resume here or <span>browse</span></p>
+                                    <small>Supported formats: PDF, DOC, DOCX (Max 5MB)</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cover-letter">Cover Letter</label>
+                            <textarea id="cover-letter" name="cover-letter" rows="5" placeholder="Write your cover letter here..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="certificates">Certificates (Optional)</label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="certificates" name="certificates" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                                <div class="file-upload-message">
+                                    <i class="fas fa-certificate"></i>
+                                    <p>Upload your certificates</p>
+                                    <small>You can select multiple files (Max 2MB each)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-shield-alt"></i> Additional Information</h3>
+                        <div class="form-group">
+                            <label for="work-authorization">Work Authorization</label>
+                            <select id="work-authorization" name="work-authorization" required>
+                                <option value="">Select work authorization</option>
+                                <option value="citizen">Citizen</option>
+                                <option value="permanent-resident">Permanent Resident</option>
+                                <option value="work-visa">Work Visa</option>
+                                <option value="student-visa">Student Visa</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="relocation">Willing to Relocate?</label>
+                            <select id="relocation" name="relocation" required>
+                                <option value="">Select option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                                <option value="maybe">Maybe</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="references">References (Optional)</label>
+                            <textarea id="references" name="references" rows="3" placeholder="List your professional references"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" onclick="saveAsDraft()">
+                            <i class="fas fa-save"></i> Save as Draft
+                        </button>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-upload"></i> Submit Application
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="resume-tips" id="resumeTips">
+                <h3><i class="fas fa-lightbulb"></i> Resume Tips</h3>
+                <div class="tips-grid">
+                    <div class="tip-card" onclick="showTipDetails('format')">
+                        <i class="fas fa-edit"></i>
+                        <h4>Format</h4>
+                        <p>Click to view format guidelines</p>
+                    </div>
+                    <div class="tip-card" onclick="showTipDetails('keywords')">
+                        <i class="fas fa-key"></i>
+                        <h4>Keywords</h4>
+                        <p>Click to view keyword tips</p>
+                    </div>
+                    <div class="tip-card" onclick="showTipDetails('proofread')">
+                        <i class="fas fa-check-double"></i>
+                        <h4>Proofread</h4>
+                        <p>Click to view proofreading checklist</p>
+                    </div>
+                    <div class="tip-card" onclick="showTipDetails('file')">
+                        <i class="fas fa-file-archive"></i>
+                        <h4>File Size & Format</h4>
+                        <p>Click to view file guidelines</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tip Details Modal -->
+            <div id="tipModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div id="formatDetails" class="tip-details">
+                        <h3><i class="fas fa-edit"></i> Resume Format Guidelines</h3>
+                        <div class="details-content">
+                            <h4>Font & Layout</h4>
+                            <ul>
+                                <li>Use professional fonts: Arial, Calibri, or Times New Roman</li>
+                                <li>Font size: 10-12pt for body text, 14-16pt for headings</li>
+                                <li>Keep margins between 0.5-1 inch on all sides</li>
+                                <li>Use consistent spacing throughout</li>
+                            </ul>
+                            <h4>Structure</h4>
+                            <ul>
+                                <li>Include clear section headings</li>
+                                <li>Use bullet points for easy reading</li>
+                                <li>Limit to 1-2 pages maximum</li>
+                                <li>Organize information in reverse chronological order</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="keywordsDetails" class="tip-details">
+                        <h3><i class="fas fa-key"></i> Resume Keywords Guide</h3>
+                        <div class="details-content">
+                            <h4>Essential Keywords</h4>
+                            <ul>
+                                <li>Include job-specific skills and qualifications</li>
+                                <li>Use industry-standard terminology</li>
+                                <li>Mention relevant certifications and licenses</li>
+                                <li>Highlight technical skills and software proficiency</li>
+                            </ul>
+                            <h4>Action Verbs</h4>
+                            <ul>
+                                <li>Managed, Led, Developed, Created</li>
+                                <li>Implemented, Designed, Analyzed, Improved</li>
+                                <li>Coordinated, Organized, Planned, Executed</li>
+                                <li>Resolved, Optimized, Streamlined, Enhanced</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="proofreadDetails" class="tip-details">
+                        <h3><i class="fas fa-check-double"></i> Proofreading Checklist</h3>
+                        <div class="details-content">
+                            <h4>Content Review</h4>
+                            <ul>
+                                <li>Check for spelling and grammar errors</li>
+                                <li>Verify all dates and numbers</li>
+                                <li>Ensure consistent formatting</li>
+                                <li>Review contact information accuracy</li>
+                            </ul>
+                            <h4>Final Steps</h4>
+                            <ul>
+                                <li>Read aloud for flow and clarity</li>
+                                <li>Get feedback from others</li>
+                                <li>Check for ATS compatibility</li>
+                                <li>Verify all links work (if included)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="fileDetails" class="tip-details">
+                        <h3><i class="fas fa-file-archive"></i> File Guidelines</h3>
+                        <div class="details-content">
+                            <h4>File Requirements</h4>
+                            <ul>
+                                <li>Keep file size under 5MB</li>
+                                <li>Use PDF format for best compatibility</li>
+                                <li>Name file professionally (e.g., "John_Smith_Resume.pdf")</li>
+                                <li>Optimize images if included</li>
+                            </ul>
+                            <h4>Best Practices</h4>
+                            <ul>
+                                <li>Test file opens correctly</li>
+                                <li>Ensure text is selectable</li>
+                                <li>Check for proper formatting on different devices</li>
+                                <li>Include a plain text version if requested</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-jobs">
+            <h3>Featured Jobs</h3>
+            <div class="job-list">
+                <div class="job">
+                    <div class="job-header">
+                        <i class="fab fa-google company-logo"></i>
+                        <div class="job-title-container">
+                            <h4>Software Engineer</h4>
+                            <p>
+                                <span class="company-name">Google</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-highlight">
+                            <i class="fas fa-code"></i>
+                            <span>Full Stack Development</span>
+                        </div>
+                        <div class="job-highlight">
+                            <i class="fas fa-clock"></i>
+                            <span>Full Time</span>
+                        </div>
+                        <div class="job-highlight">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>$120K - $180K</span>
+                        </div>
+                    </div>
+                    <a href="apply.html" class="apply-btn"><span>Apply Now</span></a>
+                </div>
+                <div class="job">
+                    <div class="job-header">
+                        <i class="fab fa-facebook company-logo"></i>
+                        <div class="job-title-container">
+                            <h4>Data Analyst</h4>
+                            <p>
+                                <span class="company-name">Facebook</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Menlo Park, CA</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-highlight">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Data Analysis</span>
+                        </div>
+                        <div class="job-highlight">
+                            <i class="fas fa-clock"></i>
+                            <span>Full Time</span>
+                        </div>
+                        <div class="job-highlight">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>$90K - $140K</span>
+                        </div>
+                    </div>
+                    <a href="apply.html" class="apply-btn"><span>Apply Now</span></a>
+                </div>
+                <div class="job">
+                    <div class="job-header">
+                        <i class="fab fa-amazon company-logo"></i>
+                        <div class="job-title-container">
+                            <h4>Product Manager</h4>
+                            <p>
+                                <span class="company-name">Amazon</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Seattle, WA</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-highlight">
+                            <i class="fas fa-tasks"></i>
+                            <span>Product Development</span>
+                        </div>
+                        <div class="job-highlight">
+                            <i class="fas fa-clock"></i>
+                            <span>Full Time</span>
+                        </div>
+                        <div class="job-highlight">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>$130K - $200K</span>
+                        </div>
+                    </div>
+                    <a href="apply.html" class="apply-btn"><span>Apply Now</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h3>What Our Users Say</h3>
+            <div class="testimonial-list">
+                <div class="testimonial">
+                    <img src="images/testimonial1.jpg" alt="Anmol Pandey" class="testimonial-image">
+                    <p>"I found my dream job thanks to this portal!"</p>
+                    <h4>- Anmol Pandey</h4>
+                </div>
+                <div class="testimonial">
+                    <img src="images/testimonial2.jpg" alt="Anmol Pandey" class="testimonial-image">
+                    <p>"Easy to use and lots of opportunities to explore."</p>
+                    <h4>- Anmol Pandey</h4>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p class="text-light">&copy; 2024 Job Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleUploadForm() {
+            const form = document.getElementById('uploadForm');
+            const tips = document.getElementById('resumeTips');
+            const icon = document.querySelector('.toggle-icon');
+            
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            tips.style.display = tips.style.display === 'none' ? 'block' : 'none';
+            icon.classList.toggle('fa-chevron-up');
+            icon.classList.toggle('fa-chevron-down');
+        }
+
+        function showTipDetails(tipType) {
+            const modal = document.getElementById('tipModal');
+            const allDetails = document.querySelectorAll('.tip-details');
+            
+            // Hide all details first
+            allDetails.forEach(detail => detail.style.display = 'none');
+            
+            // Show selected details
+            document.getElementById(tipType + 'Details').style.display = 'block';
+            
+            // Show modal
+            modal.style.display = 'block';
+        }
+
+        // Close modal when clicking the X
+        document.querySelector('.close-modal').onclick = function() {
+            document.getElementById('tipModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('tipModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Language Selection Functions
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('languageDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function filterLanguages(query) {
+            const items = document.querySelectorAll('.language-list li');
+            query = query.toLowerCase();
+            
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(query) ? 'flex' : 'none';
+            });
+        }
+
+        function changeLanguage(language, code) {
+            document.getElementById('currentLanguage').textContent = language;
+            document.getElementById('languageDropdown').classList.remove('active');
+            
+            // Save language preference
+            localStorage.setItem('preferredLanguage', language);
+            localStorage.setItem('languageCode', code);
+            
+            // Update page content based on selected language
+            updatePageContent(code);
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = code;
+
+            // Show success message with the selected language
+            const successMessage = document.createElement('div');
+            successMessage.className = 'language-change-message';
+            successMessage.textContent = `Language changed to ${language}`;
+            successMessage.style.background = '#000000';
+            document.body.appendChild(successMessage);
+
+            // Remove message after 3 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 3000);
+        }
+
+        function updatePageContent(languageCode) {
+            const translations = {
+                en: {
+                    home: "Home",
+                    jobListings: "Job Listings",
+                    companies: "Companies",
+                    skillTests: "Skill Tests",
+                    about: "About",
+                    contact: "Contact",
+                    resumeUpload: "Resume Upload",
+                    findDreamJob: "Find Your Dream Job Today!",
+                    exploreJobs: "Explore thousands of job listings from top companies.",
+                    searchJobs: "Search Jobs",
+                    uploadResume: "Upload Your Resume",
+                    clickToUpload: "Click to upload your resume",
+                    personalInfo: "Personal Info",
+                    resume: "Resume",
+                    complete: "Complete",
+                    fullName: "Full Name",
+                    emailAddress: "Email Address",
+                    phoneNumber: "Phone Number",
+                    uploadResumeBtn: "Upload Resume",
+                    coverLetter: "Cover Letter (Optional)",
+                    featuredJobs: "Featured Jobs",
+                    applyNow: "Apply Now",
+                    testimonials: "What Our Users Say"
+                },
+                hi: {
+                    home: "होम",
+                    jobListings: "नौकरी की सूची",
+                    companies: "कंपनियां",
+                    skillTests: "स्किल टेस्ट",
+                    about: "हमारे बारे में",
+                    contact: "संपर्क",
+                    resumeUpload: "रिज्यूम अपलोड",
+                    findDreamJob: "आज ही अपनी ड्रीम जॉब पाएं!",
+                    exploreJobs: "टॉप कंपनियों की हजारों नौकरियों का पता लगाएं।",
+                    searchJobs: "नौकरी खोजें",
+                    uploadResume: "अपना रिज्यूम अपलोड करें",
+                    clickToUpload: "रिज्यूम अपलोड करने के लिए क्लिक करें",
+                    personalInfo: "व्यक्तिगत जानकारी",
+                    resume: "रिज्यूम",
+                    complete: "पूर्ण",
+                    fullName: "पूरा नाम",
+                    emailAddress: "ईमेल पता",
+                    phoneNumber: "फोन नंबर",
+                    uploadResumeBtn: "रिज्यूम अपलोड करें",
+                    coverLetter: "कवर लेटर (वैकल्पिक)",
+                    featuredJobs: "फीचर्ड नौकरियां",
+                    applyNow: "अभी आवेदन करें",
+                    testimonials: "हमारे उपयोगकर्ता क्या कहते हैं"
+                },
+                es: {
+                    home: "Inicio",
+                    jobListings: "Ofertas de Trabajo",
+                    companies: "Empresas",
+                    skillTests: "Pruebas de Habilidades",
+                    about: "Acerca de",
+                    contact: "Contacto",
+                    resumeUpload: "Subir Currículum",
+                    findDreamJob: "¡Encuentra tu Trabajo Soñado Hoy!",
+                    exploreJobs: "Explora miles de ofertas de trabajo de las mejores empresas.",
+                    searchJobs: "Buscar Trabajos",
+                    uploadResume: "Sube tu Currículum",
+                    clickToUpload: "Haz clic para subir tu currículum",
+                    personalInfo: "Información Personal",
+                    resume: "Currículum",
+                    complete: "Completar",
+                    fullName: "Nombre Completo",
+                    emailAddress: "Correo Electrónico",
+                    phoneNumber: "Número de Teléfono",
+                    uploadResumeBtn: "Subir Currículum",
+                    coverLetter: "Carta de Presentación (Opcional)",
+                    featuredJobs: "Trabajos Destacados",
+                    applyNow: "Aplicar Ahora",
+                    testimonials: "Lo que Dicen Nuestros Usuarios"
+                }
+            };
+
+            // Get translations for selected language
+            const langTranslations = translations[languageCode] || translations.en;
+
+            // Update navigation items
+            document.querySelectorAll('nav a').forEach(link => {
+                const key = link.textContent.trim().toLowerCase().replace(/\s+/g, '');
+                if (langTranslations[key]) {
+                    link.innerHTML = `<i class="${link.querySelector('i').className}"></i> ${langTranslations[key]}`;
+                }
+            });
+
+            // Update hero section
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.querySelector('h2').textContent = langTranslations.findDreamJob;
+                hero.querySelector('p').textContent = langTranslations.exploreJobs;
+                hero.querySelector('button').textContent = langTranslations.searchJobs;
+            }
+
+            // Update resume upload section
+            const uploadSection = document.querySelector('.resume-upload-section');
+            if (uploadSection) {
+                uploadSection.querySelector('h2').innerHTML = `<i class="fas fa-file-upload"></i> ${langTranslations.uploadResume}`;
+                uploadSection.querySelector('.subtitle').textContent = langTranslations.clickToUpload;
+            }
+
+            // Update form labels
+            document.querySelectorAll('label').forEach(label => {
+                const key = label.textContent.trim().toLowerCase().replace(/\s+/g, '');
+                if (langTranslations[key]) {
+                    label.textContent = langTranslations[key];
+                }
+            });
+
+            // Update buttons
+            document.querySelectorAll('button').forEach(button => {
+                const key = button.textContent.trim().toLowerCase().replace(/\s+/g, '');
+                if (langTranslations[key]) {
+                    button.textContent = langTranslations[key];
+                }
+            });
+
+            // Update section headings
+            document.querySelectorAll('section h3').forEach(heading => {
+                const key = heading.textContent.trim().toLowerCase().replace(/\s+/g, '');
+                if (langTranslations[key]) {
+                    heading.textContent = langTranslations[key];
+                }
+            });
+
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.className = 'language-change-message';
+            successMessage.textContent = `Language changed to ${language}`;
+            document.body.appendChild(successMessage);
+
+            // Remove message after 3 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 3000);
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('languageDropdown');
+            const languageBtn = document.querySelector('.language-btn');
+            
+            if (!languageBtn.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Load saved language preference on page load
+        window.addEventListener('load', function() {
+            const savedLanguage = localStorage.getItem('preferredLanguage');
+            const savedCode = localStorage.getItem('languageCode');
+            if (savedLanguage && savedCode) {
+                document.getElementById('currentLanguage').textContent = savedLanguage;
+                updatePageContent(savedCode);
+                document.documentElement.lang = savedCode;
+            }
+        });
+
+        function toggleNotificationDropdown() {
+            const dropdown = document.getElementById('notificationDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close notification dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('notificationDropdown');
+            const notificationBtn = document.querySelector('.notification-btn');
+            
+            if (!notificationBtn.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        function toggleProfileDropdown() {
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close profile dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('profileDropdown');
+            const profileBtn = document.querySelector('.profile-btn');
+            
+            if (!profileBtn.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        function showHelpCenter() {
+            alert('Help Center will open in a new tab');
+            window.open('help-center.html', '_blank');
+        }
+
+        function logout() {
+            const confirmLogout = confirm('Are you sure you want to logout?');
+            if (confirmLogout) {
+                // Add logout logic here
+                window.location.href = 'login.html';
+            }
+        }
+
+        function triggerProfilePhotoUpload() {
+            document.getElementById('profilePhotoInput').click();
+        }
+
+        function handleProfilePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Update profile photo in dropdown
+                    document.getElementById('profilePhoto').src = e.target.result;
+                    
+                    // Update profile button photo
+                    const profileBtnImg = document.querySelector('.profile-btn img');
+                    if (!profileBtnImg) {
+                        const icon = document.querySelector('.profile-btn i');
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        icon.replaceWith(img);
+                    } else {
+                        profileBtnImg.src = e.target.result;
+                    }
+
+                    // Save to localStorage
+                    localStorage.setItem('profilePhoto', e.target.result);
+                    
+                    // Show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'language-change-message';
+                    successMessage.textContent = 'Profile photo updated successfully';
+                    successMessage.style.background = '#000000';
+                    document.body.appendChild(successMessage);
+                    setTimeout(() => successMessage.remove(), 3000);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please select a valid image file');
+            }
+        }
+
+        // Load saved profile photo on page load
+        window.addEventListener('load', function() {
+            const savedPhoto = localStorage.getItem('profilePhoto');
+            if (savedPhoto) {
+                document.getElementById('profilePhoto').src = savedPhoto;
+                const profileBtnIcon = document.querySelector('.profile-btn i');
+                const img = document.createElement('img');
+                img.src = savedPhoto;
+                profileBtnIcon.replaceWith(img);
+            }
+        });
+
+        function saveAsDraft() {
+            // Add logic to save form data as draft
+            alert('Form saved as draft!');
+        }
+    </script>
+
+    <style>
+        /* Add these styles at the beginning of your style section */
+        header {
+            padding: 15px 0;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav ul li {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            color: #333333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+
+        nav ul li a:hover {
+            background: #e8f5e9;
+            color: #4CAF50;
+        }
+
+        nav ul li a.active {
+            background: #4CAF50;
+            color: white;
+        }
+
+        nav ul li a i {
+            font-size: 16px;
+        }
+
+        /* Update the existing profile button styles */
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            height: 40px;
+            background: none;
+            border: 2px solid #4CAF50;
+            border-radius: 6px;
+            color: #000000;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Update the existing notification button styles */
+        .notification-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            height: 48px;
+            background: none;
+            border: 2px solid #4CAF50;
+            border-radius: 6px;
+            color: #000000;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .notification-btn i {
+            font-size: 20px;
+            color: #000000;
+            animation: bellShake 2s infinite;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #dc3545;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid white;
+            animation: pulse 2s infinite;
+        }
+
+        .notification-text {
+            margin: 0 4px;
+            font-weight: 600;
+        }
+
+        .notification-btn:hover {
+            background: #e8f5e9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes bellShake {
+            0% { transform: rotate(0); }
+            5%, 15% { transform: rotate(25deg); }
+            10%, 20% { transform: rotate(-25deg); }
+            25% { transform: rotate(0); }
+            100% { transform: rotate(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .notification-text {
+                display: none;
+            }
+            
+            .notification-btn {
+                padding: 8px;
+            }
+        }
+
+        /* Update the existing language button styles */
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            height: 40px;
+            background: none;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            color: #000000;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Language Selector Styles */
+        .language-selector {
+            position: relative;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 280px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
+
+        .language-dropdown.active {
+            display: block;
+        }
+
+        .language-search {
+            padding: 16px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .language-search input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #000000;
+            font-weight: 500;
+        }
+
+        .language-search input::placeholder {
+            color: #666666;
+            font-weight: normal;
+            font-size: 16px;
+        }
+
+        .language-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .language-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            color: #000000;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .language-list li:hover {
+            background: #e8f5e9;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .language-list img {
+            width: 24px;
+            height: 18px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        .language-list span {
+            flex: 1;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .language-dropdown {
+                position: fixed;
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                border-radius: 12px 12px 0 0;
+                max-height: 80vh;
+            }
+
+            .language-list {
+                max-height: 60vh;
+            }
+
+            .language-btn {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .language-list li {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+
+        /* Language Change Message Styles */
+        .language-change-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.3s ease-out;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #e8f5e9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-form input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: #333333;
+        }
+
+        .search-form button {
+            padding: 15px 30px;
+            background: #ffffff;
+            color: #4CAF50;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-form button:hover {
+            background: #e8f5e9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h2 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+        }
+
+        /* Notification Styles */
+        .notification-dropdown {
+            position: relative;
+        }
+
+        .notification-dropdown-content {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 300px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
+
+        .notification-dropdown-content.active {
+            display: block;
+        }
+
+        .notification-header {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .notification-header h3 {
+            color: #000000;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .notification-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .notification-item {
+            display: flex;
+            gap: 12px;
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .notification-item:hover {
+            background: #f8f9fa;
+        }
+
+        .notification-icon {
+            color: #4CAF50;
+            font-size: 20px;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-content h4 {
+            color: #000000;
+            font-weight: bold;
+            font-size: 14px;
+            margin: 0 0 5px 0;
+        }
+
+        .notification-content p {
+            color: #666666;
+            font-size: 12px;
+            margin: 0 0 5px 0;
+        }
+
+        .notification-time {
+            color: #4CAF50;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .notification-footer {
+            padding: 10px 15px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .view-all {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .notification-dropdown-content {
+                position: fixed;
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                border-radius: 12px 12px 0 0;
+                max-height: 80vh;
+            }
+
+            .notification-list {
+                max-height: 60vh;
+            }
+
+            .notification-btn {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+        }
+
+        /* Profile Dropdown Styles */
+        .profile-dropdown {
+            position: relative;
+        }
+
+        .profile-dropdown-content {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 280px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
+
+        .profile-dropdown-content.active {
+            display: block;
+        }
+
+        .profile-header {
+            padding: 25px;
+            border-bottom: 2px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+            background: #f8f9fa;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .profile-avatar {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid #4CAF50;
+            margin: 0 auto;
+        }
+
+        .profile-avatar input {
+            display: none;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-avatar .avatar-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-avatar .avatar-overlay i {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .profile-avatar .avatar-overlay span {
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .profile-avatar:hover .avatar-overlay {
+            opacity: 1;
+        }
+
+        .profile-info {
+            text-align: center;
+            width: 100%;
+        }
+
+        .profile-info h3 {
+            margin: 0;
+            color: #000000;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-info p {
+            margin: 8px 0 0;
+            color: #4CAF50;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .profile-menu {
+            padding: 8px 0;
+        }
+
+        .profile-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            color: #333333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .profile-menu-item:hover {
+            background: #f8f9fa;
+        }
+
+        .profile-menu-item i {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .profile-menu-item span {
+            font-size: 14px;
+        }
+
+        .profile-divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 8px 0;
+        }
+
+        .profile-menu-item.logout {
+            color: #dc3545;
+        }
+
+        .profile-menu-item.logout i {
+            color: #dc3545;
+        }
+
+        .profile-menu-item.logout small {
+            color: #dc3545;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .profile-dropdown-content {
+                position: fixed;
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                border-radius: 12px 12px 0 0;
+                max-height: 80vh;
+            }
+        }
+
+        /* Update Profile Dropdown Styles */
+        .profile-status {
+            display: block;
+            font-size: 12px;
+            color: #666666;
+            margin-top: 4px;
+        }
+
+        .menu-item-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .menu-item-info small {
+            color: #666666;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid #4CAF50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .avatar-overlay i {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .avatar-overlay span {
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .avatar-container:hover .avatar-overlay {
+            opacity: 1;
+        }
+
+        .profile-btn img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #4CAF50;
+        }
+
+        .form-section {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-section h3 i {
+            color: #4CAF50;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .form-group small {
+            display: block;
+            color: #666;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .file-upload-wrapper {
+            border: 2px dashed #ddd;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .file-upload-wrapper:hover {
+            border-color: #4CAF50;
+        }
+
+        .file-upload-message {
+            color: #666;
+        }
+
+        .file-upload-message i {
+            font-size: 24px;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .file-upload-message span {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        .submit-btn,
+        .secondary-btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        .submit-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background: white;
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+        }
+
+        .secondary-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        select[multiple] {
+            height: auto;
+            min-height: 100px;
+        }
+    </style>
+</body>
+</html>
